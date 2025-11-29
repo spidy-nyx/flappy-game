@@ -4,9 +4,9 @@ A fun Flappy Bird-style game with custom character animations and meme game-over
 
 ## 🚀 Play Now
 
-**[Click here to play!](https://YOUR-USERNAME.github.io/flappy-game/)**
+**[Click here to play!](https://flappy-game-spidy-nyx.vercel.app)** *(will be live after Vercel deployment)*
 
-Or open `index.html` in your browser.
+Or open `index.html` in your browser locally.
 
 ## ✨ Features
 
