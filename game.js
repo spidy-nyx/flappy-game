@@ -427,12 +427,30 @@ function handleInput() {
     }
 }
 
-// Touch/Click events
+// Touch/Click events - improved for mobile
 canvas.addEventListener('click', handleInput);
 canvas.addEventListener('touchstart', (e) => {
     e.preventDefault();
+    e.stopPropagation();
     handleInput();
-});
+}, { passive: false });
+
+canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+}, { passive: false });
+
+// Also handle touches on the entire game container for better mobile support
+const gameContainer = document.getElementById('gameContainer');
+gameContainer.addEventListener('touchstart', (e) => {
+    // Only handle if not clicking buttons
+    if (!e.target.classList.contains('game-btn') && 
+        !e.target.classList.contains('control-btn')) {
+        e.preventDefault();
+        e.stopPropagation();
+        handleInput();
+    }
+}, { passive: false });
 
 // Keyboard
 document.addEventListener('keydown', (e) => {

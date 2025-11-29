@@ -15,6 +15,10 @@ body {
     overflow: hidden;
     touch-action: none;
     position: relative;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 /* Animated background particles */
@@ -53,6 +57,11 @@ body::before {
     image-rendering: crisp-edges;
     cursor: pointer;
     transition: filter 0.3s;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #gameCanvas:active {
