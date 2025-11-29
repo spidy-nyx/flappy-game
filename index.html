@@ -52,9 +52,17 @@
     <!-- Load base64 encoded images first -->
     <script src="images-data.js"></script>
     <script>
+        // Debug logging
+        console.log('BASE64_IMAGES loaded:', typeof BASE64_IMAGES !== 'undefined');
+        if (typeof BASE64_IMAGES !== 'undefined') {
+            console.log('Available images:', Object.keys(BASE64_IMAGES));
+        }
+        
         // Set meme image from base64 once loaded
         if (typeof BASE64_IMAGES !== 'undefined' && BASE64_IMAGES.meme) {
             document.getElementById('memeImage').src = BASE64_IMAGES.meme;
+        } else {
+            console.error('BASE64_IMAGES not loaded or meme image missing!');
         }
     </script>
     <script src="game.js"></script>

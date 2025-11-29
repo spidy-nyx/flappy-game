@@ -160,12 +160,15 @@ const images = {
 // Load images from base64 (embedded in images-data.js)
 // No external file dependencies!
 if (typeof BASE64_IMAGES !== 'undefined') {
+    console.log('Loading images from BASE64_IMAGES...');
     images.playerRun1.src = BASE64_IMAGES.run1;
     images.playerRun2.src = BASE64_IMAGES.run2;
     images.playerJump.src = BASE64_IMAGES.jump;
     images.meme.src = BASE64_IMAGES.meme;
+    console.log('Images loaded successfully');
 } else {
-    console.warn('BASE64_IMAGES not loaded - make sure images-data.js is included');
+    console.error('❌ BASE64_IMAGES not loaded - make sure images-data.js is included');
+    alert('Error: Images not loaded. Please refresh the page.');
 }
 
 // Track loading

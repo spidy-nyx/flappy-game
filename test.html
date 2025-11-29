@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Test</title>
+</head>
+<body>
+    <h1>Testing Base64 Images</h1>
+    <div id="status">Loading...</div>
+    <div id="images"></div>
+    
+    <script src="images-data.js"></script>
+    <script>
+        const statusDiv = document.getElementById('status');
+        const imagesDiv = document.getElementById('images');
+        
+        if (typeof BASE64_IMAGES === 'undefined') {
+            statusDiv.innerHTML = '❌ ERROR: BASE64_IMAGES not loaded!';
+            statusDiv.style.color = 'red';
+        } else {
+            statusDiv.innerHTML = '✅ BASE64_IMAGES loaded successfully!';
+            statusDiv.style.color = 'green';
+            
+            // Display each image
+            Object.keys(BASE64_IMAGES).forEach(key => {
+                const img = document.createElement('img');
+                img.src = BASE64_IMAGES[key];
+                img.style.width = '100px';
+                img.style.margin = '10px';
+                img.alt = key;
+                
+                const label = document.createElement('p');
+                label.textContent = key;
+                
+                imagesDiv.appendChild(label);
+                imagesDiv.appendChild(img);
+            });
+        }
+    </script>
+</body>
+</html>
