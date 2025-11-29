@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.sublime-*
+
+# Encoded temp files
+encoded-data.txt
+temp-base64.txt
+
+# Setup files (optional - remove if you want to keep them)
+SETUP-COMPLETE.txt
+TEST-INSTRUCTIONS.txt
+YOUR-3-IMAGES-SETUP.txt

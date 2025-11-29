@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Convert Images to Base64</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1a1a2e;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        input[type="file"] {
+            margin: 20px 0;
+            padding: 10px;
+            background: white;
+            color: black;
+        }
+        .output {
+            background: #2a2a3e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            word-wrap: break-word;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        button {
+            padding: 10px 20px;
+            background: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #66bb6a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 Convert Images to Base64</h1>
+        <p>This will encode your images so they're embedded in the code and harder to extract.</p>
+        
+        <h3>Step 1: Select Images</h3>
+        <input type="file" id="run1" accept="image/*">
+        <label>player_run1.png</label>
+        <div id="output1" class="output"></div>
+        
+        <input type="file" id="run2" accept="image/*">
+        <label>player_run2.png</label>
+        <div id="output2" class="output"></div>
+        
+        <input type="file" id="jump" accept="image/*">
+        <label>player_jump.png</label>
+        <div id="output3" class="output"></div>
+        
+        <input type="file" id="meme" accept="image/*">
+        <label>meme.png</label>
+        <div id="output4" class="output"></div>
+        
+        <h3>Step 2: Copy Code</h3>
+        <button onclick="copyAll()">Copy All Base64 Code</button>
+        <p style="color: #4caf50;">Then paste into game.js to replace image loading section</p>
+    </div>
+
+    <script>
+        let base64Data = {
+            run1: '',
+            run2: '',
+            jump: '',
+            meme: ''
+        };
+
+        function setupFileInput(inputId, outputId, key) {
+            document.getElementById(inputId).addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function(event) {
+                    const base64 = event.target.result;
+                    base64Data[key] = base64;
+                    document.getElementById(outputId).textContent = base64.substring(0, 100) + '... (encoded)';
+                };
+                
+                reader.readAsDataURL(file);
+            });
+        }
+
+        setupFileInput('run1', 'output1', 'run1');
+        setupFileInput('run2', 'output2', 'run2');
+        setupFileInput('jump', 'output3', 'jump');
+        setupFileInput('meme', 'output4', 'meme');
+
+        function copyAll() {
+            const code = `
+// Replace the image loading section in game.js with this:
+
+images.playerRun1.src = '${base64Data.run1}';
+images.playerRun2.src = '${base64Data.run2}';
+images.playerJump.src = '${base64Data.jump}';
+images.meme.src = '${base64Data.meme}';
+`;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                alert('✅ Code copied! Now paste it into game.js');
+            });
+        }
+    </script>
+</body>
+</html>
